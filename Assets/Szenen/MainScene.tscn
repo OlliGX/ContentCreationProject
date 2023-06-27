@@ -1,13 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Szenen/environment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Szenen/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Szenen/Mülleimer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Szenen/schild.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MainEnv.tres" type="Environment" id=5]
+[ext_resource path="res://Assets/Szenen/HoloPoster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Szenen/Lampe.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Szenen/Schaufenster.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Szenen/Tisch.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Szenen/Stuhl.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Szenen/Wandregal.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Szenen/Regal.tscn" type="PackedScene" id=12]
+
+[sub_resource type="CubeMesh" id=1]
 
 [node name="MainScene" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.096, 0, -95.8981 )
+transform = Transform( 0.876962, 0, 0.48056, 0, 1, 0, -0.48056, 0, 0.876962, 25.096, 0, -95.8981 )
 
 [node name="background" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.924406, 0, 0.381409, 0, 1, 0, -0.381409, 0, 0.924406, -160.154, 0.693954, -407.557 )
@@ -15,16 +24,8 @@ transform = Transform( 0.924406, 0, 0.381409, 0, 1, 0, -0.381409, 0, 0.924406, -
 [node name="environment" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3937, 2.70977, -35.7718 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.946593, 0, -0.322431, 0, 1, 0, 0.322431, 0, 0.946593, 0.900169, 20.5155, 78.5562 )
-environment = ExtResource( 5 )
-far = 8192.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 5 )
-
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.0680153, 0.997684, 0, -0.997684, 0.0680153, -30.8032, 44.4185, 4.95065 )
+[node name="SpotLight" type="SpotLight" parent="environment"]
+transform = Transform( 1, 0, 0, 0, 0.0680153, 0.997684, 0, -0.997684, 0.0680153, -9.4095, 41.7087, 40.7225 )
 light_color = Color( 1, 0.87451, 0.678431, 1 )
 light_energy = 16.0
 light_indirect_energy = 6.725
@@ -35,7 +36,7 @@ spot_range = 75.5428
 spot_attenuation = 0.129408
 spot_angle = 15.28
 
-[node name="OmniLight" type="OmniLight" parent="SpotLight"]
+[node name="OmniLight" type="OmniLight" parent="environment/SpotLight"]
 transform = Transform( 0.860572, 0.0716034, -0.50427, -0.50714, 0.0287888, -0.861383, -0.0471606, 0.997018, 0.0610878, 0.143539, -2.04928, -2.15372 )
 light_color = Color( 1, 0.87451, 0.678431, 1 )
 light_energy = 14.358
@@ -44,26 +45,125 @@ shadow_enabled = true
 omni_range = 13.5495
 omni_attenuation = 0.933034
 
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.946593, 0, -0.322431, 0, 1, 0, 0.322431, 0, 0.946593, 6.53575, 20.5155, 69.3137 )
+environment = ExtResource( 5 )
+far = 8192.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
 [node name="schild" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.860572, 0.0716033, -0.50427, -0.0815446, 0.996667, 0.00235913, 0.502758, 0.0390903, 0.863543, 10.967, 46.7334, 27.4094 )
 
 [node name="OmniLight" type="OmniLight" parent="schild"]
-transform = Transform( 1, -1.86265e-09, -2.98023e-08, -3.72529e-09, 1, 2.6077e-08, 0, -2.6077e-08, 1, -6.30414, -3.68556, 6.79042 )
+transform = Transform( 1, 7.07805e-08, -1.8999e-07, 3.60774e-09, 1, -3.69619e-09, 2.98023e-08, -2.18861e-08, 1, 1.98718, 2.49789, 6.60022 )
 light_color = Color( 0.12549, 1, 0, 1 )
-light_energy = 14.358
+light_energy = 5.991
 light_specular = 0.206
 shadow_enabled = true
 omni_range = 57.2365
 omni_attenuation = 0.933034
 
 [node name="Mülleimer" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.7423, 0.987233, 44.0485 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.0804, 0.987233, 41.6375 )
 
 [node name="OmniLight" type="OmniLight" parent="Mülleimer"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.82372, 4.29227, 9.39855 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56922, 6.09576, 10.65 )
 light_color = Color( 0.992157, 0, 1, 1 )
 light_energy = 3.789
 light_specular = 0.206
 shadow_enabled = true
-omni_range = 43.785
+omni_range = 24.5444
 omni_attenuation = 0.933034
+
+[node name="HoloPoster1" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.8913, 0, -0.453415, 0, 1, 0, 0.453415, 0, 0.8913, -5.52109, 26, -12.8565 )
+
+[node name="OmniLight" type="OmniLight" parent="HoloPoster1"]
+transform = Transform( 0.891299, 0, 0.453415, 0, 1, 0, -0.453415, 0, 0.891299, 4.21131, 3.91845, 5.41418 )
+light_color = Color( 1, 0, 0, 1 )
+light_energy = 3.789
+light_specular = 0.206
+shadow_enabled = true
+omni_range = 28.4786
+omni_attenuation = 0.933034
+
+[node name="Lampe" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 45.6483, 40.5178, -21.2979 )
+
+[node name="OmniLight" type="OmniLight" parent="Lampe"]
+transform = Transform( 0.891299, 0, 0.453415, 0, 1, 0, -0.453415, 0, 0.891299, -0.0370789, 6.22187, -0.27961 )
+light_color = Color( 1, 0.8, 0.486275, 1 )
+light_energy = 1.44
+light_specular = 0.206
+shadow_enabled = true
+omni_range = 64.578
+omni_attenuation = 0.933034
+omni_shadow_mode = 0
+
+[node name="Lampe2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.507788, -0.86148, -0.00205709, 0.00245298, -0.000941974, 0.999997, -0.861479, -0.507791, 0.00163487, 110.371, 33.9998, 50.751 )
+
+[node name="OmniLight" type="OmniLight" parent="Lampe2"]
+transform = Transform( 0.8913, -1.19209e-07, 0.453415, 2.38419e-07, 1, 7.45058e-08, -0.453415, 3.96394e-08, 0.8913, -0.0370789, 6.22186, -0.279594 )
+light_color = Color( 1, 0.8, 0.486275, 1 )
+light_energy = 5.257
+light_specular = 0.206
+shadow_enabled = true
+omni_range = 64.5777
+omni_attenuation = 0.933034
+omni_shadow_mode = 0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 4.58916, 0, 0, 0, 4.58916, 0, 0, 0, 4.58916, 24.5238, 7.49412, 5.52731 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Schaufenster" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.892515, 0, -0.451018, 0, 1, 0, 0.451018, 0, 0.892515, 73.9964, 2.81179, 32.21 )
+
+[node name="OmniLight" type="OmniLight" parent="Schaufenster"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36752, 6.22408, 16.0347 )
+light_color = Color( 0, 1, 0.0862745, 1 )
+light_energy = 3.789
+light_specular = 0.206
+shadow_enabled = true
+omni_range = 21.1362
+omni_attenuation = 0.933034
+
+[node name="tischj" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0032, 2.96454, -24.9942 )
+
+[node name="OmniLight" type="OmniLight" parent="tischj"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4373, 10.3155, 12.7935 )
+light_color = Color( 0, 0.529412, 1, 1 )
+light_energy = 3.789
+light_specular = 0.206
+shadow_enabled = true
+omni_range = 13.2257
+omni_attenuation = 0.933034
+
+[node name="OmniLight2" type="OmniLight" parent="tischj"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.94217, 10.3155, 18.9146 )
+light_color = Color( 0, 0.529412, 1, 1 )
+light_energy = 3.789
+light_specular = 0.206
+shadow_enabled = true
+omni_range = 22.3972
+omni_attenuation = 0.933034
+
+[node name="Stuhl" parent="." instance=ExtResource( 10 )]
+transform = Transform( -0.0268052, 0, -0.999641, 0, 1, 0, 0.999641, 0, -0.0268052, 41.5144, 3.88852, -8.02007 )
+
+[node name="Wandregal" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.323833, 0, -0.623856, 0, 0.702897, 0, 0.623856, 0, -0.323833, 52.5918, 22.2053, -37.5245 )
+
+[node name="Wandregal2" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.323833, 0, -0.623856, 0, 0.702897, 0, 0.623856, 0, -0.323833, 52.5918, 29.8958, -37.5245 )
+
+[node name="Wandregal3" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.623856, 0, -0.323832, 0, 0.702897, 0, 0.323832, 0, 0.623856, 69.9807, 32.1187, -1.32005 )
+
+[node name="Regal" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.886462, 0, -0.462801, 0, 1, 0, 0.462801, 0, 0.886462, 109.234, 3.71465, -3.43582 )
